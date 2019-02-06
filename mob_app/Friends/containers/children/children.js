@@ -13,7 +13,7 @@ export class Children extends React.Component {
           <Text style={{fontSize:32,paddingBottom:10}}>           Data entry           </Text> 
           
           <Item style={{marginBottom:10}} rounded>
-            <Input style={{paddingLeft:1  0}} placeholder='Enter The Roll Number'/>
+            <Input style={{paddingLeft:10}} placeholder='Enter The Roll Number'/>
           </Item>
 
           <Item style={{marginBottom:10}} rounded>
