@@ -6,6 +6,7 @@ import { Came } from './containers/camera/camera';
 import { Message } from './containers/message/message';
 import { Media } from './containers/media/media';
 import { Admin } from './containers/admin/admin';
+import { Children } from './containers/children/children';
 import SideBar from './containers/SideBar';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -13,7 +14,8 @@ const Mdn = createDrawerNavigator({
   camera: {screen:Came},
   media:{screen:Media},
   admin:{screen:Admin},
-  messg:{screen:Message,}
+  messg:{screen:Message},
+  children:{screen:Children}
 },
 {
   contentComponent: SideBar,
