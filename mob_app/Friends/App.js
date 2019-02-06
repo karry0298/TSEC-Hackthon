@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator, createAppContainer,  createDrawerNavigator, createSwitchNavigator ,createTabNavigator } from "react-navigation";
 import { Login } from './containers/login/login';
 import { Came } from './containers/camera/camera';
+import { Message } from './containers/message/message';
 import { Media } from './containers/media/media';
 import { Admin } from './containers/admin/admin';
 import SideBar from './containers/SideBar';
@@ -12,6 +13,7 @@ const Mdn = createDrawerNavigator({
   camera: {screen:Came},
   media:{screen:Media},
   admin:{screen:Admin}
+  messg:{screen:Message,}
 },
 {
   contentComponent: SideBar,
