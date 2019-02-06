@@ -10,7 +10,7 @@ export class Came extends React.Component {
     static navigationOptions = {
         headerTitleStyle: { alignSelf: 'center' },
         title: 'Center Title',
-        header: !null
+        
     }
     
     // static imgList = ["aasdag","ghdhccghcd"]

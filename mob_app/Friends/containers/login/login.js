@@ -9,8 +9,8 @@ import { LinearGradient } from 'expo';
 export class Login extends React.Component {
     
     static navigationOptions = {
-        header: null
-    }
+        header:null
+      }
 
         state = {usrName:"" , pWord:""}
 
