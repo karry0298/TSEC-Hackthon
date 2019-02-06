@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image,Platform,ScrollView,StyleSheet,Text,TouchableOpacity,KeyboardAvoidingView,View,} from 'react-native';
 import { WebBrowser } from 'expo';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Ionicons } from '@expo/vector-icons';
 import {Button, Item, Input} from 'native-base';
 import { green } from 'ansi-colors';
 import { LinearGradient } from 'expo';
@@ -34,7 +34,7 @@ export class Login extends React.Component {
         
       return (
 
-      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>        
+      <KeyboardAvoidingView style={styles.container}s behavior="padding" enabled>        
         <LinearGradient colors={['#36d1dc', '#5b86e5']} style={{flex:1 , backgroundColor:'#36d1dc'}}>
 
                 <Text style={styles.top}>
@@ -42,6 +42,7 @@ export class Login extends React.Component {
                 </Text>
 
                 <Item rounded style={{marginLeft:25, marginRight:25 , marginTop:25}}>
+                <Ionicons name="md-checkmark-circle" size={32} color="white" />
                     <Input placeholder='Username' onChangeText={text => this.setState({usrName:text})} placeholderTextColor="#ffffff" style={{paddingLeft:25 , color:'#ffffff'}} />
                 </Item>
 
