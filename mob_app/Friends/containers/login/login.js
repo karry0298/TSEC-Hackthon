@@ -34,40 +34,45 @@ export class Login extends React.Component {
         
       return (
 
-      <KeyboardAvoidingView style={styles.container}s behavior="padding" enabled>        
         <LinearGradient colors={['#36d1dc', '#5b86e5']} style={{flex:1 , backgroundColor:'#36d1dc'}}>
 
-                <Text style={styles.top}>
-                    Sign In
-                </Text>
+
+        <View >
+        <Text style={styles.top}>
+                   Sign In
+               </Text>
 
                 <Item rounded style={{marginLeft:25, marginRight:25 , marginTop:25}}>
                 <Ionicons name="md-checkmark-circle" size={32} color="white" />
                     <Input placeholder='Username' onChangeText={text => this.setState({usrName:text})} placeholderTextColor="#ffffff" style={{paddingLeft:25 , color:'#ffffff'}} />
                 </Item>
 
-                <Item rounded style={{marginLeft:25, marginRight:25 , marginTop:25}}>
+                <Item rounded style={{ marginLeft:25, marginRight:25  , marginTop:25}}>
                     <Input secureTextEntry={true} placeholder='Password' onChangeText={text => this.setState({pWord:text})} placeholderTextColor="#ffffff" style={{paddingLeft:25 , color:'#ffffff'}} />
                 </Item>
 
                 <Text style={{marginLeft:30 , marginTop:10 , color:"#ffffff"}}>
                     Forgot Password?
                 </Text>
-
-                <Button rounded onPress = { () => this.onLogFun()} style={{marginLeft:80 , marginTop:25, backgroundColor:'#ffffff'}}>
+                <View style={[{ width: "100%", marginLeft:30 }]}>
+                <Button rounded onPress = { () => this.onLogFun()} style={{marginLeft:25 , marginTop:25,justifyContent:'center', backgroundColor:'#ffffff'}}>
                     <Text>                               Login                               </Text>
                 </Button>
+                </View>
 
-                <View style={{flex:1,justifyContent: 'flex-end'}}>
+
+
+
+                <View style={{flex:1,marginTop:190, justifyContent: 'flex-start'}}>
                     <View style={{bottom:0}}>
                         <Text style={[{color: '#ffffff'},styles.bottom]}>
                             Don't Have an Account ? Create Account
                         </Text>
                     </View>
                 </View>
+        </View>
 
         </LinearGradient>    
-      </KeyboardAvoidingView>
         
       );
     }
@@ -76,11 +81,11 @@ export class Login extends React.Component {
   const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+ 
       }, 
       bottom: {
         textAlign: 'center',
-        marginBottom: 20,
         fontSize:14
         },
       top: {
