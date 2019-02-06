@@ -567,7 +567,33 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
+  <script>
 
+      $(document).ready(function(){
+          var amount1=0,name1='',email1='';
+          $("#amount").keyup(function(){
+          amount1=$("#amount").val();
+          name1=$("#name").val();
+          email1=$('#email').val();
+          console.log(amount1)
+      });
+          $("#new_button").click(function(){
+          $.post('http://10.42.0.12:3000/donate',
+          {
+          name: name1,
+          email:email1,
+          amount:amount1
+
+          },
+          function(data,status){
+          console.log("Data: " + data + "\nStatus: " + status);
+          });
+      });
+
+
+
+  })       
+  </script>
 </body>
 
 </html>
