@@ -340,12 +340,12 @@
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Donors</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Donor</h6>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Name</th>
@@ -520,13 +520,13 @@
     message_count=data[1][0].countofmessages;
     $("#countOfMessages").html(message_count)
     for(x = 0; x < data[2].length; x++) {
-    $("#donor_list").append('<tr><td>'+data[2][x].name+'</td><td>'+data[2][x].email+'</td><td>'+data[2][x].phone+'</td><td>'+data[2][x].amount+'</td><td>'+data[2][x].ddate+'</td>');
+    $("#donor_list").append('<tr><td>'+data[2][x].name+'</td><td>'+data[2][x].email+'</td><td>'+data[2][x].phone+'</td><td>'+data[2][x].ddate+'</td><td>'+data[2][x].amount+'</td>');
 
     // or 
     // var element = $('<div>'+x+'</div>');
     // elements = elements.add(element);
 }
-    console.log(data[2][1])
+    console.log(data[0][1])
   });
 //           var request = new XMLHttpRequest();
 // var params = "action=something";
