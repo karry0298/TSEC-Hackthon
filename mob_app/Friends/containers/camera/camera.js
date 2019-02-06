@@ -6,11 +6,24 @@ import {Button, Item, Input} from 'native-base';
 import { Camera, Permissions } from 'expo';
 
 export class Came extends React.Component {
+
+    static navigationOptions = {
+        headerTitleStyle: { alignSelf: 'center' },
+        title: 'Center Title',
+        header: !null
+    }
     
+    // static imgList = ["aasdag","ghdhccghcd"]
+
+    // static getCurrentUser() {
+    //     return imgList;
+    // }
+
     state = {
         hasCameraPermission: null,
         type: Camera.Constants.Type.back,
-      };
+        listMy:[]
+    };
 
       
     
@@ -24,14 +37,29 @@ export class Came extends React.Component {
             if (this.camera) {
             this.camera.takePictureAsync({ onPictureSaved: this.onPictureSaved });
             }
+            
         };
+
+        onPictureSaved = async photo => {
+            await FileSystem.moveAsync({
+              from: photo.uri,
+              to: `${FileSystem.documentDirectory}photos/${Date.now()}.jpg`,
+            });
+            this.setState({ newPhotos: true });
+        }
 
       snap = async () => {
         if (this.camera) {
           let photo = await this.camera.takePictureAsync();
           console.warn(photo);
+          this.state.listMy.push(photo.uri)
+          console.warn(this.state.listMy)
         }
       };
+
+      onMedia(){
+        this.props.navigation.navigate('media',{imgs:this.state.listMy})
+      }
     
 
   render() {
@@ -44,7 +72,7 @@ export class Came extends React.Component {
         return (
             <View style={{ flex: 1 }}>
 
-                <Camera style={{ flex: 1 }} type={this.state.type} ref={ref => { this.camera = ref; }}>
+                <Camera style={{ flex: 1 , height:450 }} type={this.state.type} ref={ref => { this.camera = ref; }}>
                     <View
                     style={{
                         flex: 1,
@@ -53,7 +81,7 @@ export class Came extends React.Component {
                     }}>
                     <TouchableOpacity
                         style={{
-                        flex: 0.3,
+                        flex: 1,
                         alignSelf: 'flex-end',
                         alignItems: 'center',
                         }}
@@ -65,14 +93,18 @@ export class Came extends React.Component {
                         });
                         }}>
                         <Text
-                        style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
+                        style={{ fontSize: 25, marginBottom: 10,marginRight:90, color: 'white' }}>
                         {' '}Flip{' '}
                         </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={this.snap} style={{ alignSelf: 'center' }}>
-                            <Ionicons style={{marginTop:480,paddingLeft:105}} name="ios-radio-button-on" size={70} color="white" />
+                            <Ionicons style={{marginTop:480,marginRight:72}} name="ios-radio-button-on" size={100} color="white" />
                     </TouchableOpacity>
+
+                    <Button rounded onPress = { () => this.onMedia()} style={{marginRight:10 , marginBottom:8,justifyContent:'center', backgroundColor:'#ffffff',alignSelf: 'flex-end'}}>
+                        <Text>        View       </Text>
+                    </Button>
 
                     </View>
                 </Camera>

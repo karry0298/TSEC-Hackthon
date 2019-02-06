@@ -8,20 +8,19 @@ export default class Cardss extends React.Component {
 
   render() {
     return (
-      <View style={{width: 370 , alignSelf:"center",paddingTop:20}}>
+      <View style={{width: 370 , alignSelf:"center",paddingTop:5}}>
          <Card>            
-            <CardItem style={{height:70}}>
+            <CardItem style={{height:55}}>
               <Left>
-                <Thumbnail source={this.props.logoUri} />
+                <Thumbnail style={{width: 45, height: 45, borderRadius: 45/2}} source={require('../../assets/Images/profile_bk_pict.jpg')} />
                 <Body>
-                  <Text>NativeBase</Text>
-                  <Text note>GeekyAnts</Text>
+                  <Text style={{fontSize:20,paddingLeft:20}}>{this.props.textUri}</Text>
                 </Body>
               </Left>
             </CardItem>
             
             <CardItem cardBody>
-              <Image source={require('../../assets/Images/profile_bk_pict.jpg')} style={{height: 200, width: null, flex: 1}}/>
+              <Image source={this.props.logoUri} style={{height: 200, width: null, flex: 1}}/>
             </CardItem>
             
           </Card> 

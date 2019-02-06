@@ -2,10 +2,12 @@ import React from "react";
 import { AppRegistry, Image, StatusBar,Text } from "react-native";
 import { Button,Container,List,ListItem,Content,Icon,Thumbnail} from "native-base";
 import { LinearGradient } from 'expo';
+import { Ionicons } from '@expo/vector-icons';
+
 
 //const routes = ["Cam", "Ram"];
 
-const routes = [{title:"camera" },{title:"media"},{title:"admin"},{title:"messg"}];
+const routes = [{title:"camera",icon:"md-camera"},{title:"media",icon:"md-images"},{title:"messg",icon:"md-chatbubbles"}];
 
 export default class SideBar extends React.Component {
   render() {
@@ -45,6 +47,8 @@ export default class SideBar extends React.Component {
             renderRow={data => {
               return (
                 <ListItem button onPress={() => this.props.navigation.navigate(data.title)}>
+      
+                  <Ionicons name={data.icon} style={{paddingLeft:18}} size={32} color="white" />
                   <Text blurRadius={1} style={{color:'#ffffff' , fontSize:25, paddingLeft:20 ,paddingRight:5, elevation:3}}>{data.title}</Text>
                 </ListItem>
               );
