@@ -8,7 +8,8 @@ import SideBar from './containers/SideBar';
 import { Ionicons } from '@expo/vector-icons';
 
 const Mdn = createDrawerNavigator({
-  media_comm: {screen:Media}
+  media_comm: {screen:Media},
+  messg:{screen:Message,}
 },
 {
   contentComponent: SideBar,

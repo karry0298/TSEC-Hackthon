@@ -10,8 +10,11 @@ export class Message extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          selected: undefined,
+          selected: 'Andheri',
           fontLoaded: false,
+          items_needed:false,
+          people_needed:false,
+          others:false
         };
       }
       async componentWillMount() {
@@ -24,6 +27,21 @@ export class Message extends React.Component {
         this.setState({
           selected: value
         });
+      }
+
+      onClick1(){
+        this.setState({
+            items_needed:!this.state.items_needed
+          });
+
+      }
+      onClick2(){
+        this.setState({
+            people_needed:!this.state.people_needed
+          });
+      }
+      onClick3(){
+          this.state.others=!this.state.others;
       }
         static navigationOptions = {
           header: null
@@ -76,25 +94,25 @@ export class Message extends React.Component {
               selectedValue={this.state.selected}
               onValueChange={this.onValueChange.bind(this)}
             >
-              <Picker.Item label="Andheri" value="key0" />
-              <Picker.Item label="Bandra" value="key1" />
-              <Picker.Item label="Malad" value="key2" />
+              <Picker.Item label="Andheri" value="Andheri" />
+              <Picker.Item label="Bandra" value="Bandra" />
+              <Picker.Item label="Malad" value="Malad" />
 
             </Picker>
             <ListItem>
-            <CheckBox checked={true} />
+            <CheckBox checked={this.state.items_needed} onPress={() => this.setState({items_needed:!this.state.items_needed})}/>
             <Body>
               <Text style={{ paddingLeft:15}}>Items Needed</Text>
             </Body>
           </ListItem>
           <ListItem>
-            <CheckBox checked={false} />
+            <CheckBox checked={this.state.people_needed} onPress={() => this.setState({people_needed:!this.state.people_needed})} />
             <Body>
-              <Text style={{ paddingLeft:15}}>Items Needed</Text>
+              <Text style={{ paddingLeft:15}}>People Needed</Text>
             </Body>
           </ListItem>
           <ListItem>
-            <CheckBox  color="green"/>
+            <CheckBox checked={this.state.others} onPress={() => this.setState({others:!this.state.people_needed})} />
             <Body>
               <Text style={{ paddingLeft:15}}>Others</Text>
             </Body>
@@ -104,7 +122,7 @@ export class Message extends React.Component {
               <Input />
             </Item>
             <View style={[{ width: "100%", marginLeft:30 }]}>
-                <Button rounded style={{marginLeft:25 , marginTop:25,justifyContent:'center', color:'#f0f0f0'}}>
+                <Button rounded style={{marginLeft:25 , marginTop:25,justifyContent:'center', backgroundColor:'#f0f0f0'}}>
                     <Text>                               Submit                           </Text>
                 </Button>
                 </View>

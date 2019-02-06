@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo';
 
 //const routes = ["Cam", "Ram"];
 
-const routes = [{title:"cam" , icon:"map-marked-alt"},{title:"ram" , icon:"user"}];
+const routes = [{title:"media_comm" },{title:"messg"}];
 
 export default class SideBar extends React.Component {
   render() {
