@@ -24,7 +24,8 @@ export class Login extends React.Component {
           }
           else
           {
-              ToastAndroid.show('A pikachu appeared nearby !', ToastAndroid.SHORT)
+              //ToastAndroid.show('A pikachu appeared nearby !', ToastAndroid.SHORT)
+              console.warn('working okkkkks')
               //this.props.navigation.navigate('profile')
           }
         }
