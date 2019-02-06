@@ -1,70 +1,72 @@
 import React from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  View,
-} from 'react-native';
+import {Image,Platform,ScrollView,StyleSheet,Text,TouchableOpacity,KeyboardAvoidingView,View,} from 'react-native';
 import { WebBrowser } from 'expo';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Input,Button } from 'react-native-elements';
+import {Button, Item, Input} from 'native-base';
 import { green } from 'ansi-colors';
+import { LinearGradient } from 'expo';
+
 export class Login extends React.Component {
-    render() {
+    
+        static navigationOptions = {
+          header: null
+        }
+
+        state = {usrName:"" , pWord:""}
+
+        onLogFun(){
+          const {usrName , pWord} = this.state
+          console.warn(usrName , pWord)
+          if(usrName != '' && pWord != ''){
+              console.warn('working okkkkks')
+              //ToastAndroid.show('A pikachu has entered', ToastAndroid.SHORT);
+              this.props.navigation.navigate('profile')
+          }
+          else
+          {
+              ToastAndroid.show('A pikachu appeared nearby !', ToastAndroid.SHORT)
+              //this.props.navigation.navigate('profile')
+          }
+        }
+  
+  
+  render() {
         
       return (
 
-        <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-        
-        <View
-          style={{position: 'absolute',top: 0,left: 0,width: '100%',
-            height: '100%',
-          }}
-        >
-        <Image source={require('./../../assets/bg1.jpg')} style={{width: '100%', height: '100%',opacity:0.8}}>
-        </Image>
-        </View>
- 
-       <Input
-          placeholder='Email'
-          placeholderTextColor = "black"
-          selectionColor="black"
-          leftIcon={{ type: 'antdesign', name: 'user',margin:10,color:'white',}}
-          inputContainerStyle={{ borderRadius:10, marginBottom:12,marginHorizontal:15,borderBottomWidth: 0 ,backgroundColor:"green",opacity:0.3}}
-         
-        />
-        <Input
-          placeholder='Password'
-          placeholderTextColor = "black"
-          style={{ padding:100,}} 
-          selectionColor="black"
-          
-          leftIcon={{ type: 'antdesign', name: 'lock',margin:10,color:'white',}}
-          inputContainerStyle={{ borderRadius:10,marginBottom:12,marginHorizontal:15,backgroundColor:"green",opacity:0.3,borderBottomWidth: 0 }}
-          
-        />
+      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>        
+        <LinearGradient colors={['#36d1dc', '#5b86e5']} style={{flex:1 , backgroundColor:'#36d1dc'}}>
 
-       <View style={[{ width: "60%", margin: 10,  }]}>
-       <Button
-        title="Login"
-        color="green"
-       
-        containerStyle={{paddingHorizontal:25,}}
-        //containerStyle={{color:'green',}}
+                <Text style={styles.top}>
+                    Sign In
+                </Text>
 
-        />
-      </View>
+                <Item rounded style={{marginLeft:25, marginRight:25 , marginTop:25}}>
+                    <Input placeholder='Username' onChangeText={text => this.setState({usrName:text})} placeholderTextColor="#ffffff" style={{paddingLeft:25 , color:'#ffffff'}} />
+                </Item>
 
+                <Item rounded style={{marginLeft:25, marginRight:25 , marginTop:25}}>
+                    <Input secureTextEntry={true} placeholder='Password' onChangeText={text => this.setState({pWord:text})} placeholderTextColor="#ffffff" style={{paddingLeft:25 , color:'#ffffff'}} />
+                </Item>
 
+                <Text style={{marginLeft:30 , marginTop:10 , color:"#ffffff"}}>
+                    Forgot Password?
+                </Text>
 
+                <Button rounded onPress = { () => this.onLogFun()} style={{marginLeft:80 , marginTop:25, backgroundColor:'#ffffff'}}>
+                    <Text>                               Login                               </Text>
+                </Button>
 
+                <View style={{flex:1,justifyContent: 'flex-end'}}>
+                    <View style={{bottom:0}}>
+                        <Text style={[{color: '#ffffff'},styles.bottom]}>
+                            Don't Have an Account ? Create Account
+                        </Text>
+                    </View>
+                </View>
 
-
-        </KeyboardAvoidingView>
+        </LinearGradient>    
+      </KeyboardAvoidingView>
         
       );
     }
