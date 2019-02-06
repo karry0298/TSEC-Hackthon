@@ -71,14 +71,21 @@ export class Login extends React.Component {
       );
     }
   }
+  
   const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: 'transparent',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    buttonStyle: {
-      backgroundColor: "#aaa"
-      },
-  });
+        flex: 1,
+        alignItems: 'center'
+      }, 
+      bottom: {
+        textAlign: 'center',
+        marginBottom: 20,
+        fontSize:14
+        },
+      top: {
+        textAlign:"center", 
+        color: '#ffffff' , 
+        fontSize:45,
+        marginTop:115,
+      }
+    })
