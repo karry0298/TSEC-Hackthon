@@ -377,7 +377,7 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Targets</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">86.5%</div>
                         </div>
                         <div class="col">
                           <div class="progress progress-sm mr-2">
@@ -596,6 +596,10 @@
     $("#pending").html(message_count);
 
     console.log(data[0][1])
+  });
+
+    $.get("http://10.42.0.12:3000/budget", function(data, status){
+    console.log(data)
   });
 
 
