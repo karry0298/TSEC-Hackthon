@@ -29,7 +29,25 @@ export class Message extends React.Component {
           selected: value
         });
       }
-
+      handleClick = () => {
+        console.warn(this.state.further_details+" "+this.state.selected)
+        fetch('http://10.42.0.12:3000/message', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              area:this.state.selected,
+              item:this.state.items_needed,
+              people:this.state.people_needed,
+              others:this.state.others,
+              message:this.state.further_details  
+            }),
+          }).catch(error => {
+            console.warn(error);
+          });
+    }
 
         static navigationOptions = {
           header: null
@@ -110,7 +128,7 @@ export class Message extends React.Component {
               <Input onChangeText={(text)=> {this.setState({further_details:text});}}/>
             </Item>
             <View style={[{ width: "100%", marginLeft:30 }]}>
-                <Button rounded style={{marginLeft:25 , marginTop:25,justifyContent:'center', backgroundColor:'#f0f0f0'}}>
+                <Button  onPress={this.handleClick}   rounded style={{marginLeft:25 , marginTop:25,justifyContent:'center', backgroundColor:'#f0f0f0'}}>
                     <Text>                               Submit                           </Text>
                 </Button>
                 </View>
