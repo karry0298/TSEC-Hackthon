@@ -14,7 +14,8 @@ export class Message extends React.Component {
           fontLoaded: false,
           items_needed:false,
           people_needed:false,
-          others:false
+          others:false,
+          further_details:''
         };
       }
       async componentWillMount() {
@@ -29,20 +30,7 @@ export class Message extends React.Component {
         });
       }
 
-      onClick1(){
-        this.setState({
-            items_needed:!this.state.items_needed
-          });
 
-      }
-      onClick2(){
-        this.setState({
-            people_needed:!this.state.people_needed
-          });
-      }
-      onClick3(){
-          this.state.others=!this.state.others;
-      }
         static navigationOptions = {
           header: null
         }
@@ -112,14 +100,14 @@ export class Message extends React.Component {
             </Body>
           </ListItem>
           <ListItem>
-            <CheckBox checked={this.state.others} onPress={() => this.setState({others:!this.state.people_needed})} />
+            <CheckBox checked={this.state.others} onPress={() => this.setState({others:!this.state.otehrs})} />
             <Body>
               <Text style={{ paddingLeft:15}}>Others</Text>
             </Body>
           </ListItem>
             <Item floatingLabel>
               <Label>Further Details</Label>
-              <Input />
+              <Input onChangeText={(text)=> {this.setState({further_details:text});}}/>
             </Item>
             <View style={[{ width: "100%", marginLeft:30 }]}>
                 <Button rounded style={{marginLeft:25 , marginTop:25,justifyContent:'center', backgroundColor:'#f0f0f0'}}>
