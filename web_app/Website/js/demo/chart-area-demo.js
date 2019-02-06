@@ -26,9 +26,14 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   }
   return s.join(dec);
 }
+ datas=[];
+$.get("http://10.42.0.12:3000/admin", function(data, status){
 
-// Area Chart Example
-var ctx = document.getElementById("myAreaChart");
+  for ( i=0;i<12;i++){
+    datas.push(data[0][i])
+  }
+  
+  var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
@@ -46,7 +51,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [0, 0, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+      data: [datas[0].value, datas[1].value,datas[2].value, datas[3].value, datas[4].value,datas[5].value, datas[6].value, datas[7].value, datas[8].value, datas[9].value,datas[10].value, datas[11].value],
     }],
   },
   options: {
@@ -110,9 +115,13 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': Rs' + number_format(tooltipItem.yLabel);
         }
       }
     }
   }
 });
+});
+console.log(datas[0].value);
+// Area Chart Example
+
