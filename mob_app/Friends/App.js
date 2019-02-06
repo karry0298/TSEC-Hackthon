@@ -12,7 +12,7 @@ import { Ionicons } from '@expo/vector-icons';
 const Mdn = createDrawerNavigator({
   camera: {screen:Came},
   media:{screen:Media},
-  admin:{screen:Admin}
+  admin:{screen:Admin},
   messg:{screen:Message,}
 },
 {
@@ -30,10 +30,19 @@ const AppNavigator = createStackNavigator({
   defaultNavigationOptions: ({navigation}) => {
     return {
       headerLeft:(
-          <Ionicons name="md-checkmark-circle" size={32} color="black" onPress={() => navigation.toggleDrawer()} />
-      )
+          <Ionicons name="md-reorder" size={44} style={{paddingLeft:15}} color="black" onPress={() => navigation.toggleDrawer()} />
+          )
     };
-  }
+  },  
+    navigationOptions: {
+      title: 'Test', // this works
+      header: { //any prop in the header is ignored
+        tintColor: 'black',
+        style: {
+          backgroundColor: 'skyblue'
+        }
+      }
+    }
 });
 
 export default createAppContainer(AppNavigator);

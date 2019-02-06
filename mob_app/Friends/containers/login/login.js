@@ -8,9 +8,9 @@ import { LinearGradient } from 'expo';
 
 export class Login extends React.Component {
     
-        static navigationOptions = {
-          header: null
-        }
+    static navigationOptions = {
+        header: null
+    }
 
         state = {usrName:"" , pWord:""}
 
@@ -44,11 +44,14 @@ export class Login extends React.Component {
                </Text>
 
                 <Item rounded style={{marginLeft:25, marginRight:25 , marginTop:25}}>
-                <Ionicons name="md-checkmark-circle" size={32} color="white" />
+                <Ionicons name="md-person" style={{paddingLeft:18}} size={32} color="white" />
                     <Input placeholder='Username' onChangeText={text => this.setState({usrName:text})} placeholderTextColor="#ffffff" style={{paddingLeft:25 , color:'#ffffff'}} />
                 </Item>
+                
+                
 
                 <Item rounded style={{ marginLeft:25, marginRight:25  , marginTop:25}}>
+                   <Ionicons name="md-lock" style={{paddingLeft:18}} size={32} color="white" />
                     <Input secureTextEntry={true} placeholder='Password' onChangeText={text => this.setState({pWord:text})} placeholderTextColor="#ffffff" style={{paddingLeft:25 , color:'#ffffff'}} />
                 </Item>
 
@@ -56,7 +59,7 @@ export class Login extends React.Component {
                     Forgot Password?
                 </Text>
                 <View style={[{ width: "100%", marginLeft:30 }]}>
-                <Button rounded onPress = { () => this.onLogFun()} style={{marginLeft:25 , marginTop:25,justifyContent:'center', backgroundColor:'#ffffff'}}>
+                <Button rounded onPress = { () => this.onLogFun()} style={{marginLeft:55 , marginTop:25,justifyContent:'center', backgroundColor:'#ffffff'}}>
                     <Text>                               Login                               </Text>
                 </Button>
                 </View>
