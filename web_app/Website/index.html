@@ -242,7 +242,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
                 <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">18</span>
+                <span  id="countOfMessages" class="badge badge-danger badge-counter">18</span>
               </a>
               <!-- Dropdown - Messages -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
@@ -407,7 +407,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                      <div id="pending"class="h5 mb-0 font-weight-bold text-gray-800">6</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -591,12 +591,18 @@
       });
 
         $.get("http://10.42.0.12:3000/admin-charts", function(data, status){
-          $('#mon-income').html((data[0].sumofyear)/12)
-
+          $('#mon-income').html(Math.ceil((data[0].sumofyear)/12)/10000+"Lakhs")
+          $('#ann-income').html((data[0].sumofyear))
     console.log(data[0].sumofyear)
   });
 
+  $.get("http://10.42.0.12:3000/admin", function(data, status){
+    message_count=data[1][0].countofmessages;
+    $("#countOfMessages").html(message_count);
+    $("#pending").html(message_count);
 
+    console.log(data[0][1])
+  });
 
 
   })       
