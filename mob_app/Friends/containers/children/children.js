@@ -5,6 +5,48 @@ import {Button, Item, Input} from 'native-base';
 import { bold } from 'ansi-colors';
 
 export class Children extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      rollNo: '',
+      engMarks: '',
+      mathMarks:'',
+      sciMarks:''
+     };
+  }
+
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+        Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+    });
+    this.setState({ fontLoaded: true });
+  }
+  onValueChange(value: string) {
+    this.setState({
+      selected: value
+    });
+  }
+  handleClick = () => {
+    console.warn(this.state.rollNo+"    "+this.state.engMarks+" "+this.state.mathMarks+"    "+this.state.sciMarks)
+
+    fetch('http://10.42.0.12:3000/academic', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          rollNo:this.state.rollNo,
+          English:this.state.engMarks,
+          Maths:this.state.mathMarks,
+          Science:this.state.sciMarks
+        }),
+      }).catch(error => {
+        console.warn(error);
+        console.warn("it enetrd")
+      });
+}
   
   
   render() {
@@ -13,22 +55,21 @@ export class Children extends React.Component {
           <Text style={{fontSize:32,paddingBottom:10}}>           Data entry           </Text> 
           
           <Item style={{marginBottom:10}} rounded>
-            <Input style={{paddingLeft:10}} placeholder='Enter The Roll Number'/>
+            <Input onChangeText={(text)=> {this.setState({rollNo:text});}} style={{paddingLeft:10}} placeholder='Enter The Roll Number'/>
           </Item>
 
           <Item style={{marginBottom:10}} rounded>
-            <Input placeholder='Enter markes : English'/>
+            <Input onChangeText={(text)=> {this.setState({engMarks:text});}} placeholder='Enter markes : English'/>
           </Item>
 
           <Item style={{marginBottom:10}} rounded>
-            <Input placeholder='Enter markes : Maths'/>
+            <Input onChangeText={(text)=> {this.setState({mathMarks:text});}} placeholder='Enter markes : Maths'/>
           </Item>
 
           <Item style={{marginBottom:10}} rounded>
-            <Input placeholder='Enter markes : Science'/>
+            <Input onChangeText={(text)=> {this.setState({sciMarks:text});}} placeholder='Enter markes : Science'/>
           </Item>
-
-          <Button rounded onPress = { () => this.props.navigation.navigate('messg')} style={{marginLeft:55 , marginTop:25,justifyContent:'center', backgroundColor:'#ffffff'}}>
+          <Button rounded onPress = {this.handleClick} style={{marginLeft:55 , marginTop:25,justifyContent:'center', backgroundColor:'#ffffff'}}>
               <Text>                        Submit                        </Text>
           </Button>
       </View>

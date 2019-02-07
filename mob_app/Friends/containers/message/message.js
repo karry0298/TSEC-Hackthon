@@ -53,23 +53,7 @@ export class Message extends React.Component {
           header: null
         }
 
-        state = {usrName:"" , pWord:""}
-
-        onLogFun(){
-          const {usrName , pWord} = this.state
-          console.warn(usrName , pWord)
-          if(usrName != '' && pWord != ''){
-              console.warn('working okkkkks')
-              //ToastAndroid.show('A pikachu has entered', ToastAndroid.SHORT);
-              this.props.navigation.navigate('profile')
-          }
-          else
-          {
-              ToastAndroid.show('A pikachu appeared nearby !', ToastAndroid.SHORT)
-              //this.props.navigation.navigate('profile')
-          }
-        }
-  
+        state = {usrName:"" , pWord:""} 
   
   render() {
         
