@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 //const routes = ["Cam", "Ram"];
 
-const routes = [{title:"camera",icon:"md-camera"},{title:"media",icon:"md-images"},{title:"messg",icon:"md-chatbubbles"},{title:"children",icon:"md-chatbubbles"}];
+const routes = [{title:"camera",icon:"md-camera"},{title:"media",icon:"md-images"},{title:"messg",icon:"md-chatbubbles"},{title:"children",icon:"md-chatbubbles"},{title:"reply",icon:"md-images"}];
 
 export default class SideBar extends React.Component {
   render() {

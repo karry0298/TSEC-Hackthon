@@ -52,24 +52,33 @@ export class Children extends React.Component {
   render() {
     return (
       <View style={{ alignSelf:"center",paddingTop:5}}>
-          <Text style={{fontSize:32,paddingBottom:10}}>           Data entry           </Text> 
-          
-          <Item style={{marginBottom:10}} rounded>
-            <Input onChangeText={(text)=> {this.setState({rollNo:text});}} style={{paddingLeft:10}} placeholder='Enter The Roll Number'/>
+
+          <Image
+              style={[{
+                height: 210,
+                width: 350,
+                borderRadius: 10,
+              }]}
+              source={require('../../assets/bgg.jpg')}
+          />
+
+
+          <Item style={{marginBottom:10,marginTop:10}} rounded>
+            <Input onChangeText={(text)=> {this.setState({rollNo:text});}} style={{paddingLeft:15}} placeholder='Enter The Roll Number'/>
           </Item>
 
           <Item style={{marginBottom:10}} rounded>
-            <Input onChangeText={(text)=> {this.setState({engMarks:text});}} placeholder='Enter markes : English'/>
+            <Input onChangeText={(text)=> {this.setState({engMarks:text});}} style={{marginLeft:5}} placeholder='Enter markes : English'/>
           </Item>
 
           <Item style={{marginBottom:10}} rounded>
-            <Input onChangeText={(text)=> {this.setState({mathMarks:text});}} placeholder='Enter markes : Maths'/>
+            <Input onChangeText={(text)=> {this.setState({mathMarks:text});}} style={{marginLeft:5}} placeholder='Enter markes : Maths'/>
           </Item>
 
           <Item style={{marginBottom:10}} rounded>
-            <Input onChangeText={(text)=> {this.setState({sciMarks:text});}} placeholder='Enter markes : Science'/>
+            <Input onChangeText={(text)=> {this.setState({sciMarks:text});}} style={{marginLeft:5}} placeholder='Enter markes : Science'/>
           </Item>
-          <Button rounded onPress = {this.handleClick} style={{marginLeft:55 , marginTop:25,justifyContent:'center', backgroundColor:'#ffffff'}}>
+          <Button rounded onPress = {this.handleClick} style={{marginLeft:65 , marginTop:25,justifyContent:'center', backgroundColor:'#ffffff'}}>
               <Text>                        Submit                        </Text>
           </Button>
       </View>

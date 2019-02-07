@@ -9,13 +9,15 @@ import { Admin } from './containers/admin/admin';
 import { Children } from './containers/children/children';
 import SideBar from './containers/SideBar';
 import { Ionicons } from '@expo/vector-icons';
+import { Reply } from './containers/messageReply/reply';
 
 const Mdn = createDrawerNavigator({
   camera: {screen:Came},
   media:{screen:Media},
   admin:{screen:Admin},
   messg:{screen:Message},
-  children:{screen:Children}
+  children:{screen:Children},
+  reply:{screen:Reply}
 },
 {
   contentComponent: SideBar,
