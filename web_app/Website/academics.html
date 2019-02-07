@@ -144,7 +144,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</div>
+        <div class="sidebar-brand-text mx-3">Friend</div>
       </a>
 
       <!-- Divider -->
@@ -200,7 +200,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
@@ -217,10 +217,10 @@
             <a class="collapse-item" href="blank.html">Blank Page</a>
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
@@ -232,6 +232,11 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Donors</span></a>
         </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="academics.html">
+              <i class="fas fa-fw fa-table"></i>
+              <span>Academics</span></a>
+          </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -524,6 +529,28 @@
     //   http_request.setRequestHeader("Content-Type", "application/json");
     //   http_request.send({ 'request': "authentication token" });
     //   console.log(http_request.responseText)
+
+setTimeout(function(){
+
+
+
+   $.get("http://10.42.0.12:3000/acadamic", function(data, status){
+message_count=data[1][0].countofmessages;
+$("#countOfMessages").html(message_count)
+    for(x = 0; x < data.length; x++) {
+        $("#donor_list").append('<tr><td>'+data[x].rollNo+'</td><td>'+data[x].English+'</td><td>'+data[x].Maths+'</td><td>'+data[x].Science+'</td>');
+    }
+    console.log(data[0][1])
+});
+
+   window.location.reload(1);
+
+
+
+}, 5000);
+
+
+
 
 $.get("http://10.42.0.12:3000/acadamic", function(data, status){
 message_count=data[1][0].countofmessages;

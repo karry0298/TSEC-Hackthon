@@ -93,7 +93,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
@@ -110,7 +110,7 @@
             <a class="collapse-item" href="blank.html">Blank Page</a>
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
@@ -126,6 +126,11 @@
           <span>Donors</span></a>
       </li>
 
+      <li class="nav-item">
+          <a class="nav-link" href="academics.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Academics</span></a>
+        </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -413,6 +418,26 @@
   <script src="js/demo/datatables-demo.js"></script>
   <script>
         $(document).ready(function(){
+
+
+setTimeout(function(){
+  $.get("http://10.42.0.12:3000/admin", function(data, status){
+    message_count=data[1][0].countofmessages;
+    $("#countOfMessages").html(message_count)
+    for(x = 0; x < data[2].length; x++) {
+    $("#donor_list").append('<tr><td>'+data[2][x].name+'</td><td>'+data[2][x].email+'</td><td>'+data[2][x].phone+'</td><td>'+data[2][x].ddate+'</td><td>'+data[2][x].amount+'</td>');
+
+    // or 
+    // var element = $('<div>'+x+'</div>');
+    // elements = elements.add(element);
+}
+    console.log(data[0][1])
+  });
+
+
+   window.location.reload(1);
+}, 5000);
+          
         //             var http_request;
         //   http_request = new XMLHttpRequest();
         //  http_request.onreadystatechange = function() {if (http_request.readyState==4) alert("It worked!");};

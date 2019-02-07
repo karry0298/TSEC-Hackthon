@@ -74,7 +74,7 @@
         </div>
       </li> -->
 
-      <li class="nav-item">
+      <li class="nav-item active ">
           <a class="nav-link" href="utilities-border.html">
               <i class="fas fa-fw fa-wrench"></i>
             <span>Help</span></a>
@@ -89,7 +89,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
@@ -106,7 +106,7 @@
             <a class="collapse-item" href="blank.html">Blank Page</a>
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
@@ -119,8 +119,14 @@
       <li class="nav-item">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>Donor</span></a>
       </li>
+
+      <li class="nav-item">
+          <a class="nav-link" href="academics.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Academics</span></a>
+        </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -344,7 +350,7 @@
                   </div>
 
               <div class="card mb-4 py-3 border-left-success">
-                <div class="card-body">
+                <div class="card-body" id="msg4">
                   Writing Materials Not Available
                 </div>
               </div>
@@ -356,7 +362,7 @@
                   </div>
 
               <div class="card mb-4 py-3 border-left-success">
-                <div class="card-body">
+                <div class="card-body" id="msg3">
                   Not yet Recieved
                 </div>
               </div>
@@ -370,7 +376,7 @@
                   </div>
 
               <div class="card mb-4 py-3 border-left-success">
-                <div class="card-body">
+                <div class="card-body" id="msg2">
                   Books received
                 </div>
               </div>
@@ -384,7 +390,7 @@
                   </div>
 
               <div class="card mb-4 py-3 border-left-success">
-                <div class="card-body">
+                <div class="card-body" id="msg1">
                   Supllements Neededs
                 </div>
               </div>
@@ -409,6 +415,16 @@
                       </div>
                 </div>
               </div>
+              <div class="card mb-4 py-3 border-left-warning">
+                  <div class="card-body">
+                      <div  class="card-body">
+                          <input type="text" name="lname" style="width:100%" id="amount" value="">
+                          <a id="new_button"style="margin-top:10px" href="#" class="btn btn-primary btn-user btn-block">
+                              Submit
+                           </a>
+                        </div>
+                  </div>
+                </div>
 
               <!-- <div class="card mb-4 py-3 border-left-danger">
                 <div class="card-body">
@@ -479,11 +495,92 @@
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
   <script>
+
+    setTimeout(function(){
+   window.location.reload(1);
+
+     $.get("http://10.42.0.12:3000/admin", function(data, status){
+
+
+var messageId=' '
+
+$("#amount").keyup(function(){
+    amount1=$("#amount").val();
+    name1=$("#name").val();
+    email1=$('#email').val();
+    console.log(amount1)
+});
+
+message_count=data[1][0].countofmessages;
+$("#countOfMessages").html(message_count)
+console.log(data[0][1])
+});
+$.get("http://10.42.0.12:3000/message", function(data, status){
+
+console.log(data)
+$("#msg1").html(data[0].email+": "+data[0].message)
+$("#msg2").html(data[1].email+": "+data[1].message)
+$("#msg3").html(data[2].email+": "+data[2].message)
+$("#msg4").html(data[3].email+": "+data[3].message)
+messageId=data[0].id
+});
+
+    $("#new_button").click(function(){
+    $.post('http://10.42.0.12:3000/message-reply',
+    {
+     id:messageId, 
+    
+    reply:amount1
+
+    },
+    function(data,status){
+    console.log("Data: " + data + "\nStatus: " + status);
+    });
+});
+
+
+
+
+}, 5000);
       $.get("http://10.42.0.12:3000/admin", function(data, status){
+
+
+        var messageId=' '
+
+        $("#amount").keyup(function(){
+            amount1=$("#amount").val();
+            name1=$("#name").val();
+            email1=$('#email').val();
+            console.log(amount1)
+        });
+
       message_count=data[1][0].countofmessages;
       $("#countOfMessages").html(message_count)
       console.log(data[0][1])
     });
+    $.get("http://10.42.0.12:3000/message", function(data, status){
+
+      console.log(data)
+      $("#msg1").html(data[0].email+": "+data[0].message)
+    $("#msg2").html(data[1].email+": "+data[1].message)
+    $("#msg3").html(data[2].email+": "+data[2].message)
+    $("#msg4").html(data[3].email+": "+data[3].message)
+    messageId=data[0].id
+    });
+
+            $("#new_button").click(function(){
+            $.post('http://10.42.0.12:3000/message-reply',
+            {
+             id:messageId, 
+            
+            reply:amount1
+
+            },
+            function(data,status){
+            console.log("Data: " + data + "\nStatus: " + status);
+            });
+        });
+
     </script>
 </body>
 

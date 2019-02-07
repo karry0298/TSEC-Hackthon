@@ -94,7 +94,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
@@ -111,7 +111,7 @@
             <a class="collapse-item" href="blank.html">Blank Page</a>
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
@@ -126,13 +126,11 @@
           <i class="fas fa-fw fa-table"></i>
           <span>Donors</span></a>
       </li>
-
-
       <li class="nav-item">
-        <a class="nav-link" href="academics.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Academics</span></a>
-      </li>
+          <a class="nav-link" href="academics.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Academics</span></a>
+        </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -170,6 +168,9 @@
               </div>
             </div>
           </form> -->
+
+
+             
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -576,6 +577,55 @@
   <script>
 
       $(document).ready(function(){
+
+ var amount1=0,name1='',email1='';
+          $("#amount").keyup(function(){
+          amount1=$("#amount").val();
+          name1=$("#name").val();
+          email1=$('#email').val();
+          console.log(amount1)
+      });
+          $("#new_button").click(function(){
+          $.post('http://10.42.0.12:3000/donate',
+          {
+          name: name1,
+          email:email1,
+          amount:amount1
+
+          },
+          function(data,status){
+          console.log("Data: " + data + "\nStatus: " + status);
+          });
+      });
+
+        $.get("http://10.42.0.12:3000/admin-charts", function(data, status){
+          $('#mon-income').html(Math.ceil((data[0].sumofyear)/12)/10000+"Lakhs")
+          $('#ann-income').html((data[0].sumofyear)/10000+"Lakhs")
+    console.log(data[0].sumofyear)
+  });
+
+  $.get("http://10.42.0.12:3000/admin", function(data, status){
+    message_count=data[1][0].countofmessages;
+    $("#countOfMessages").html(message_count);
+    $("#pending").html(message_count);
+
+    console.log(data[0][1])
+  });
+
+    $.get("http://10.42.0.12:3000/budget", function(data, status){
+    console.log(data)
+  });
+
+
+
+
+
+
+
+  setTimeout(function(){
+
+
+
           var amount1=0,name1='',email1='';
           $("#amount").keyup(function(){
           amount1=$("#amount").val();
@@ -613,6 +663,29 @@
     $.get("http://10.42.0.12:3000/budget", function(data, status){
     console.log(data)
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+            window.location.reload(1);
+          }, 5000);    
+
+
+
+
+
+
 
 
   })       
